@@ -12,3 +12,13 @@ Terraform is a platform that allows an IT infrastructure as code to be described
 
 Basically, it is an IaC script creation and provisioning platform.
 
+# What is Docker?
+
+Docker is a set of platform-as-a-service (PaaS) products that use operating system-level virtualization to deliver software in packages called containers. Containers are isolated from each other and bundle their own software, libraries and configuration files.
+
+Using Kernel sharing from the host machine and the virtualized machine, Docker and its containers are able to isolate only the necessary configurations of an OS and create lighter virtual systems, as they only consume the resources necessary for their operation.
+
+### What is Docker Image?
+
+A container image is a file executed in a Docker environment that has a series of packages containing all the libraries, dependencies and files necessary to run the container. It's basically the file for creating and configuring a Docker container.
+
