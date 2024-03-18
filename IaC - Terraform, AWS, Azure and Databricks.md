@@ -22,3 +22,10 @@ Using Kernel sharing from the host machine and the virtualized machine, Docker a
 
 A container image is a file executed in a Docker environment that has a series of packages containing all the libraries, dependencies and files necessary to run the container. It's basically the file for creating and configuring a Docker container.
 
+# What is DevOps and how does it relate to IaC?
+
+DevOps is an area of IT that seeks to approach relationships between Development and Operations of applications and systems closer together, seeking collaboration between them and continuous development, in order to improve the efficiency and effectiveness of the software delivery process.
+
+Strongly linked to IaC concepts, which allow the management and configuration of IT infrastructures in an automated and user-friendly way, using code instead of physical manipulations and in a shared, versioned, tested and easy-to-manage manner.
+
+Basically, IaC is a fundamental practice for implementing DevOps, as it allows the implementation of structures in a simplified way that can be shared by different areas.
