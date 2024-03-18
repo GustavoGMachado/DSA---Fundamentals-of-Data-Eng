@@ -6,6 +6,8 @@ IaC is managing and provisioning IT infrastructures using code and automation, w
 
 Basically, with IaC it is possible to create scripts that will provision and allocate an entire IT structure so that we can run different types of applications, such as servers, databases, networks and other resources.
 
+Infrastructure can be understood as the set of all physical and virtual resources necessary to support the development, testing, deployment and operation of software.
+
 # What is Terraform?
 
 Terraform is a platform that allows an IT infrastructure as code to be described in a script, which will create, change and manage the structure in an automated way. It allows infrastructures to be managed abstractly, that is, independent of the cloud provider.
