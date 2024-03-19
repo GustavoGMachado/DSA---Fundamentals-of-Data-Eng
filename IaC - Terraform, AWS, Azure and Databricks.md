@@ -10,7 +10,9 @@ Infrastructure can be understood as the set of all physical and virtual resource
 
 ### When IaC can be used?
 
-IaC is used to facilitate the provisioning of infrastructure resources, such as virtual machines, containers, storage, networking and others, in addition to automating their configuration, allowing the infrastructure to be treated as part of the application, facilitating reproduction, resource allocation and version control for it.
+IaC is used to facilitate the provisioning of infrastructure resources, such as virtual machines, containers, storage, networking and others, in addition to automating their configuration, allowing the infrastructure to be treated as part of the application, facilitating reproduction, resource allocation and version control for it. 
+
+The declarative approach is very important because users must describe the features and properties of the desired infrastructure through configuration files. This allows the IaC tool to take care of the lower-level details of how the infrastructure should be provisioned and configured.
 
 # What is Terraform?
 
