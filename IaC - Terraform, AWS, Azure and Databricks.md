@@ -30,6 +30,10 @@ Using Kernel sharing from the host machine and the virtualized machine, Docker a
 
 A container image is a file executed in a Docker environment that has a series of packages containing all the libraries, dependencies and files necessary to run the container. It's basically the file for creating and configuring a Docker container.
 
+### How can we create our own Docker Image?
+
+We can create our own Docker image from a Dockerfile. With the “docker build” command, executed in the directory that contains this type of file, we can create a customized Dockerfile which can serve as a build for any container later.
+
 # What is DevOps and how does it relate to IaC?
 
 DevOps is an area of IT that seeks to approach relationships between Development and Operations of applications and systems closer together, seeking collaboration between them and continuous development, in order to improve the efficiency and effectiveness of the software delivery process.
