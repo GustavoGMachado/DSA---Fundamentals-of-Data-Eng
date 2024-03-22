@@ -41,3 +41,11 @@ DevOps is an area of IT that seeks to approach relationships between Development
 Strongly linked to IaC concepts, which allow the management and configuration of IT infrastructures in an automated and user-friendly way, using code instead of physical manipulations or complex interfaces and in a shared, versioned, tested and easy to manage way.
 
 Basically, IaC is a fundamental practice for implementing DevOps, as it allows the implementation of structures in a simplified way that can be shared by different areas.
+
+# How can we use Terraform?
+
+To use Terraform we need a file .tf that describes in HCL (Hashicorp Configuration Language) all the configurations need to start the resource. We must run it into a structure, like containers, that contains Terraform and AWS CLI.
+
+Inside the folder that contains the .tf file, run "terraform init" to configure the workbench and prepare it for creating, updating, and removing resources. After that, runs "terraform apply" to apply the .tf file and create all the resources described in the file. With "terraform destroy" we can delete the entire resource described into .tf file.
+
+In summary, the purpose of Terraform is to read the .tf file and run it on your cloud provider.
