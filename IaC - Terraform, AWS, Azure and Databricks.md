@@ -44,7 +44,9 @@ Basically, IaC is a fundamental practice for implementing DevOps, as it allows t
 
 # How can we use Terraform?
 
-To use Terraform we need a file .tf that describes in HCL (Hashicorp Configuration Language) all the configurations need to start the resource. We must run it into a structure, like containers, that contains Terraform and AWS CLI.
+To use Terraform we need a file .tf that describes in HCL (HashiCorp Configuration Language) all the configurations need to start the resource. We must run it into a structure, like containers, that contains Terraform and AWS CLI.
+
+HCL is a configuration language developed by HashiCorp to describe infrastructure and application configurations in a declarative manner.
 
 Inside the folder that contains the .tf file, run "terraform init" to configure the workbench and prepare it for creating, updating, and removing resources. After that, runs "terraform apply" to apply the .tf file and create all the resources described in the file. With "terraform destroy" we can delete the entire resource described into .tf file.
 
