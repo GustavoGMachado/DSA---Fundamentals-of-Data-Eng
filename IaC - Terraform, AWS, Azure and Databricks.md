@@ -51,3 +51,27 @@ HCL is a configuration language developed by HashiCorp to describe infrastructur
 Inside the folder that contains the .tf file, run "terraform init" to configure the workbench and prepare it for creating, updating, and removing resources. After that, runs "terraform apply" to apply the .tf file and create all the resources described in the file. With "terraform destroy" we can delete the entire resource described into .tf file.
 
 In summary, the purpose of Terraform is to read the .tf file and run it on your cloud provider.
+
+# What is CI/CD?
+
+CI/CD (or Continuous Integration / Continuous Delivery) is a system development practice that seeks to deliver software more frequently and with higher quality. The idea is that integrations with new functionalities and delivery of executables are done continuously. The focus is always to have a "ready" version of the system, adding new features to the main branch as they are tested and approved, reducing the time to launch features or improvements.
+
+To practice Continuous Integration, that is, to speed up the process of incrementing and adding new features, it is necessary to have a good version control system (Git, for example), frequent unit tests, quick feedback and a good organization of the development environment.
+
+To practice Continuous Delivery, that is, to implement changes with greater speed and quality, it is necessary to execute and automate test flows, rapid implementation after testing is completed and monitoring and recording the performance of the latest versions delivered.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
