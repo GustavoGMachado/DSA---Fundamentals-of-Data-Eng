@@ -64,7 +64,7 @@ To practice Continuous Delivery, that is, to implement changes with greater spee
 
 ### Provider
 
-When we "apply" a .tf file, the first command it will look for will be *"provider"*. What this command does, basically, is go to the Registry (https://registry.terraform.io/) and look for that connector that was requested and download it to be used. It is the connector that will take all the configurations described in the file and provision the requested resources. Terraform can be combined with over 4000 services across its providers.
+When we "apply" a .tf file, the first command it will look for will be *"provider"*. What this command does, basically, is go to the Registry (*https://registry.terraform.io/*) and look for that connector that was requested and download it to be used. It is the connector that will take all the configurations described in the file and provision the requested resources. Terraform can be combined with over 4000 services across its providers.
 
 "A provider in Terraform is a plugin that enables interaction with an API. This includes Cloud providers and Software-as-a-service providers. The providers are specified in the Terraform configuration code. They tell Terraform which services it needs to interact with. "
 
@@ -73,6 +73,18 @@ When we "apply" a .tf file, the first command it will look for will be *"provide
 ### Resource
 
 This command will specify which resources and their parameters will be automated within the platform indicated in *provider*.
+
+### Basic Terraform Workflow - What is the Process for using Terraform for IaC?
+
+The core Terraform workflow has three steps:
+
+Write - Author infrastructure as code. A very important step because this is where you write exactly what you want to be provisioned, in .tf files;
+Plan - Preview changes before applying;
+Apply - Provision reproducible infrastructure.
+
+Before step 1, it is good to define exactly which providers, resources and parameters will be used, this includes checking plug-ins, resources, authentications, flowcharts, etc.
+
+*https://developer.hashicorp.com/terraform/intro/core-workflow*
 
 
 
