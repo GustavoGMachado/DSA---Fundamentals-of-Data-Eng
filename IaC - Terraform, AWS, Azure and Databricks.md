@@ -60,6 +60,20 @@ To practice Continuous Integration, that is, to speed up the process of incremen
 
 To practice Continuous Delivery, that is, to implement changes with greater speed and quality, it is necessary to execute and automate test flows, rapid implementation after testing is completed and monitoring and recording the performance of the latest versions delivered.
 
+# Terraform Fundamentals
+
+### Provider
+
+When we "apply" a .tf file, the first command it will look for will be *"provider"*. What this command does, basically, is go to the Registry (https://registry.terraform.io/) and look for that connector that was requested and download it to be used. It is the connector that will take all the configurations described in the file and provision the requested resources. Terraform can be combined with over 4000 services across its providers.
+
+"A provider in Terraform is a plugin that enables interaction with an API. This includes Cloud providers and Software-as-a-service providers. The providers are specified in the Terraform configuration code. They tell Terraform which services it needs to interact with. "
+
+"Providers are a logical abstraction of an upstream API. They are responsible for understanding API interactions and exposing resources."
+
+### Resource
+
+This command will specify which resources and their parameters will be automated within the platform indicated in *provider*.
+
 
 
 
