@@ -94,6 +94,29 @@ Before step 1, it is good to define exactly which providers, resources and param
 
 This command will set variables in .tf file that can be used in the script. We can define the values of these variables in the file itself or pass them through parameters when using the *terraform plan/apply/destroy* commands.
 
+```terraform
+variable "instance_type" {
+  description = ""
+}
+
+provider "aws" {
+  region  = "us-east-2"  
+}
+
+resource "aws_instance" "example" {
+  ami           = "ami-0a0d9cf81c479446a"  # AMI na AWS
+  instance_type = var.instance_type
+
+  tags = {
+    Name = "tarefa1-terraform"
+  }
+}
+```
+
+```
+terraform apply -var 'instance_type=t2.micro'
+```
+
 ### The basic flow for creating an IaC container with Terraform and AWS is:
 
 1) Create a Docker container, whether with a custom image (dockerfile) or not. If a custom image is needed, *docker build* in the folder where the dockerfile is;
