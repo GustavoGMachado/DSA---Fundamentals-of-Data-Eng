@@ -66,7 +66,7 @@ To practice Continuous Delivery, that is, to implement changes with greater spee
 
 # Terraform Fundamentals
 
-### Provider {}
+### provider {}
 
 When we "apply" a .tf file, the first command it will look for will be *"provider"*. What this command does, basically, is go to the Registry (*https://registry.terraform.io/*) and look for that connector that was requested and download it to be used. It is the connector that will take all the configurations described in the file and provision the requested resources. Terraform can be combined with over 4000 services across its providers.
 
@@ -74,7 +74,7 @@ When we "apply" a .tf file, the first command it will look for will be *"provide
 
 "Providers are a logical abstraction of an upstream API. They are responsible for understanding API interactions and exposing resources."
 
-### Resource {}
+### resource {}
 
 This command will specify which resources and their parameters will be automated within the platform indicated in *provider*.
 
@@ -90,6 +90,10 @@ Before step 1, it is good to define exactly which providers, resources and param
 
 *https://developer.hashicorp.com/terraform/intro/core-workflow*
 
+### variable ()
+
+This command will set variables in .tf file that can be used in the script. We can define the values of these variables in the file itself or pass them through parameters when using the *terraform plan/apply/destroy* commands.
+
 ### The basic flow for creating an IaC container with Terraform and AWS is:
 
 1) Create a Docker container, whether with a custom image (dockerfile) or not. If a custom image is needed, *docker build* in the folder where the dockerfile is;
@@ -97,8 +101,8 @@ Before step 1, it is good to define exactly which providers, resources and param
 3) Using the *aws configure* command, we must authenticate our account in that container.
 
 After that, the container is ready. Then we can work with Terraform automation.
-5) In the container that was created, in the folder where the .tf file is, *terraform init* to prepare that file and the environment for running Terraform/HCL;
-6) *terraform apply* to run the .tf file.
+4) In the container that was created, in the folder where the .tf file is, *terraform init* to prepare that file and the environment for running Terraform/HCL;
+5) *terraform apply* to run the .tf file.
 
 
 
