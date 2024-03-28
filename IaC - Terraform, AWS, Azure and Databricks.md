@@ -62,7 +62,7 @@ To practice Continuous Delivery, that is, to implement changes with greater spee
 
 # Terraform Fundamentals
 
-### Provider
+### Provider {}
 
 When we "apply" a .tf file, the first command it will look for will be *"provider"*. What this command does, basically, is go to the Registry (*https://registry.terraform.io/*) and look for that connector that was requested and download it to be used. It is the connector that will take all the configurations described in the file and provision the requested resources. Terraform can be combined with over 4000 services across its providers.
 
@@ -70,7 +70,7 @@ When we "apply" a .tf file, the first command it will look for will be *"provide
 
 "Providers are a logical abstraction of an upstream API. They are responsible for understanding API interactions and exposing resources."
 
-### Resource
+### Resource {}
 
 This command will specify which resources and their parameters will be automated within the platform indicated in *provider*.
 
@@ -85,6 +85,17 @@ Apply - Provision reproducible infrastructure.
 Before step 1, it is good to define exactly which providers, resources and parameters will be used, this includes checking plug-ins, resources, authentications, flowcharts, etc.
 
 *https://developer.hashicorp.com/terraform/intro/core-workflow*
+
+### The basic flow for creating an IaC container with Terraform and AWS is:
+
+1) Create a Docker container, whether with a custom image (dockerfile) or not. If a custom image is needed, *docker build* in the folder where the dockerfile is;
+2) Install the aws cli in this container;
+3) Using the *aws configure* command, we must authenticate our account in that container.
+
+After that, the container is ready. Then we can work with Terraform automation.
+5) In the container that was created, in the folder where the .tf file is, *terraform init* to prepare that file and the environment for running Terraform/HCL;
+6) *terraform apply* to run the .tf file.
+
 
 
 
