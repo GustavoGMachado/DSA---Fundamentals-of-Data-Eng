@@ -124,8 +124,31 @@ terraform apply -var 'instance_type=t2.micro'
 3) Using the *aws configure* command, we must authenticate our account in that container.
 
 After that, the container is ready. Then we can work with Terraform automation.
+
 4) In the container that was created, in the folder where the .tf file is, *terraform init* to prepare that file and the environment for running Terraform/HCL;
 5) *terraform apply* to run the .tf file.
+
+### Terraform Commands
+
+**terraform *init***:
+
+This command will prepare the environment where it was executed to interpret the .tf file. It starts by initializing the back-end, downloading the necessary provider plugins and creating a *.terraform.lock.hcl* file that records the parameters and exact versions of the providers passed in that solution, so that everyone on the same team/project is on the same page.
+
+"Terraform has created a lock file .terraform.lock.hcl to record the provider selections it made above. Include this file in your version control repository so that Terraform can guarantee to make the same selections by default when you run "terraform init" in the future."
+
+Basically, the *init* command will prepare the lock and state - .terraform folder that is created after executing the command - files. It will initialize the repository so that it can connect to a specific provider.
+
+**terraform *plan***:
+
+This command creates a "plan", that is, a .txt that contains the binaries of all the parameters that will be used in that .tf file. The advantage of this is that we can execute the plan later, with all those settings that were saved there, including on other machines.
+
+**terraform *apply***:
+
+This command will finally connect to the provider, perform the necessary authentication and execute that .tf file and apply all the resources configured in this solution.
+
+
+
+
 
 
 
