@@ -34,7 +34,7 @@ A container image is a file executed in a Docker environment that has a series o
 
 We can create our own Docker image from a Dockerfile. With the “docker build” command, executed in the directory that contains this type of file, we can create a customized Dockerfile which can serve as a build for any container later.
 
-Basically, we can create our own images to automate the creation of Docker containers. Instead of creating an empty container and inserting resources later, we can, through the Dockerfile, write a series of commands that will be applied automatically when we create a new container with that customized Image. Dockerfile is widely used to create Images with pre-configured commands and resources for containers.
+Basically, we can create our own images to automate the creation of Docker containers. Instead of creating an empty container and inserting resources later, we can, through the Dockerfile, write a series of commands that will be applied automatically when we create a new container with that customized Image. Dockerfile is widely used to create Images with pre-configured commands and resources for containers. Any changes involving the Dockerfile or its parameters will require a new *docker build* to add the changes made.
 
 One example was during the course when we created a container with the AWS CLI automatically installed because of the Dockerfile.
 
@@ -92,10 +92,16 @@ Before step 1, it is good to define exactly which providers, resources and param
 
 ### variable ()
 
-This command will set variables in .tf file that can be used in the script. We can define the values of these variables in the file itself or pass them through parameters when using the *terraform plan/apply/destroy* commands.
+This command will set variables in .tf file that can be used in the script. We can define the values of these variables in the file itself, pass them through parameters when using the *terraform plan/apply/destroy* commands, with the *-var* parameter or in variable definitions (*.tfvars*) files, either specified on the command line or automatically loaded.
 
 ```terraform
+# .tf file
+
 variable "instance_type" {
+  description = ""
+}
+
+variable "name" {
   description = ""
 }
 
@@ -108,16 +114,33 @@ resource "aws_instance" "example" {
   instance_type = var.instance_type
 
   tags = {
-    Name = "tarefa1-terraform"
+    Name = var.name
   }
 }
 ```
 
 ```
-terraform apply -var 'instance_type=t2.micro'
+terraform apply -var 'instance_type=t2.micro' -var 'name=new-example-terraform'
+```
+#### *.tfvars*
+
+Perhaps the best option for defining variables, .tfvars is a *variable definitions file*, which is a file that follows the same HCL standard, but where only variables and their values are described, in the key-value type. To use this type of configuration, we pass the .tfvars file through the *-var-file* parameter when using *terraform plan/apply*.
+
+```terraform
+# .tfvars file
+
+instance_type="t2.micro"
+name="new-example-terraform"
 ```
 
+```
+terraform apply -var-file="example.tfvars"
+```
+
+*https://developer.hashicorp.com/terraform/language/values/variables*
+
 ### The basic flow for creating an IaC container with Terraform and AWS is:
+
 
 1) Create a Docker container, whether with a custom image (dockerfile) or not. If a custom image is needed, *docker build* in the folder where the dockerfile is;
 2) Install the aws cli in this container;
@@ -146,6 +169,9 @@ This command creates a "plan", that is, a .txt that contains the binaries of all
 
 This command will finally connect to the provider, perform the necessary authentication and execute that .tf file and apply all the resources configured in this solution.
 
+**terraform *destroy***:
+
+Used to completely destroy any resources that were created in the module.
 
 
 
