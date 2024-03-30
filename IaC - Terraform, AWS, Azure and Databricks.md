@@ -122,7 +122,7 @@ resource "aws_instance" "example" {
 ```
 terraform apply -var 'instance_type=t2.micro' -var 'name=new-example-terraform'
 ```
-#### *.tfvars*
+#### *main.tf*, *terraform.tf* and *variables.tfvars*
 
 Perhaps the best option for defining variables, .tfvars is a *variable definitions file*, which is a file that follows the same HCL standard, but where only variables and their values are described, in the key-value type. To use this type of configuration, we pass the .tfvars file through the *-var-file* parameter when using *terraform plan/apply*.
 
@@ -138,8 +138,6 @@ terraform apply -var-file="example.tfvars"
 ```
 
 Another approach we can use is to have 3 files for our structure, a *main.tf* that will have the module's main configurations, a *terraform.tf* with the declaration of the variables used in the process and a *variables.tfvars* with the initialization of those variables.
-
-*Ps: the files can have any name, but if we use **main**, **terraform** and **variables**, we do not need to use parameters when calling the terraform **plan/apply/destroy** commands in the terminal.*
 
 ```terraform
 # main.tf file
@@ -182,6 +180,10 @@ terraform plan
 terraform apply
 terraform destroy
 ```
+
+This makes us to further separate the configurations in the module and allows for greater scalability, reuse and configuration flexibility.
+
+*Ps: the files can have any name, but if we use **main**, **terraform** and **variables**, we do not need to use parameters when calling the terraform **plan/apply/destroy** commands in the terminal.*
 
 *https://developer.hashicorp.com/terraform/language/values/variables*
 
