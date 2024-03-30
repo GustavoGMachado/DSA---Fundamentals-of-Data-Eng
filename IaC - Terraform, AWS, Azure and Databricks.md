@@ -129,12 +129,58 @@ Perhaps the best option for defining variables, .tfvars is a *variable definitio
 ```terraform
 # .tfvars file
 
-instance_type="t2.micro"
-name="new-example-terraform"
+instance_type = "t2.micro"
+name = "new-example-terraform"
 ```
 
 ```
 terraform apply -var-file="example.tfvars"
+```
+
+Another approach we can use is to have 3 files for our structure, a *main.tf* that will have the module's main configurations, a *terraform.tf* with the declaration of the variables used in the process and a *variables.tfvars* with the initialization of those variables.
+
+*Ps: the files can have any name, but if we use **main**, **terraform** and **variables**, we do not need to use parameters when calling the terraform **plan/apply/destroy** commands in the terminal.*
+
+```terraform
+# main.tf file
+
+provider "aws" {
+  region  = "us-east-2"  
+}
+
+resource "aws_instance" "example" {
+  ami           = "ami-0a0d9cf81c479446a"  # AMI na AWS
+  instance_type = var.instance_type
+
+  tags = {
+    Name = var.name
+  }
+}
+```
+
+```terraform
+# terraform.tf file
+
+variable "instance_type" {
+  description = ""
+}
+
+variable "name" {
+  description = ""
+}
+```
+
+```terraform
+# variables.tfvars file
+
+instance_type = "t2.micro"
+name = "new-example-terraform"
+```
+
+```
+terraform plan
+terraform apply
+terraform destroy
 ```
 
 *https://developer.hashicorp.com/terraform/language/values/variables*
