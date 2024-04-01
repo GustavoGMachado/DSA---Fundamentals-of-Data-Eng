@@ -221,6 +221,10 @@ This command will finally connect to the provider, perform the necessary authent
 
 Used to completely destroy any resources that were created in the module.
 
+### Terraform modules
+
+Terraform modules are a way to organize and create reusable code. They allow you to encapsulate resources, variables, and other configurations in a unit that can be easily shared and referenced across multiple Terraform projects. It is basically dividing the solution into templates that can be reused and shared in IaC projects, in addition to easier maintenance.
+
 
 
 
