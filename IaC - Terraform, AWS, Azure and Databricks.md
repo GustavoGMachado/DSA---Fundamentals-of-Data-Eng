@@ -225,12 +225,60 @@ Used to completely destroy any resources that were created in the module.
 
 Terraform modules are a way to organize and create reusable code. They allow you to encapsulate resources, variables, and other configurations in a unit that can be easily shared and referenced across multiple Terraform projects. It is basically dividing the solution into templates that can be reused and shared in IaC projects, in addition to easier maintenance.
 
+The objective is to have secondary templates (called Child Modules) that modularize the instances that will be created as well as their attributes, like variables. These templates can contain .tf files such as main.tf (resource) outputs.tf (output variables) and variables (input variables):
 
+```terraform
+# main.tf (in a Child Module)
 
+resource "aws_instance" "example_instance" {
+  count         = var.instance_count
+  ami           = var.ami_id
+  instance_type = var.instance_type
+}
+```
 
+```terraform
+# variables.tf
 
+variable "instance_count" {
+  type = number
+}
 
+variable "ami_id" {
+  type = string
+}
 
+variable "instance_type" {
+  type = string
+}
+```
+
+```terraform
+# outputs.tf
+
+output "instance_ids" {
+  value = aws_instance.example_instance.*.id
+}
+
+```
+
+Note that we only have a generalized template for creating EC2 instances on AWS (it isn't even necessary to define a provider), as well as its variable declaration. This is a module.
+
+And in the root folder, we define which module we want to call, passing the necessary variables.
+
+```terraform
+# main.tf (in a Root Module)
+
+module "dsa_ec2_instances" {
+  
+  source = "./modules/ec2-instances" # main.tf / output.tf / variables.tf 
+
+  instance_count = 3
+  ami_id         = "ami-0a0d9cf81c479446a"
+  instance_type  = "t2.micro"
+}
+
+*https://developer.hashicorp.com/terraform/language/modules*
 
 
 
