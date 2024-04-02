@@ -225,7 +225,7 @@ Used to completely destroy any resources that were created in the module.
 
 Terraform modules are a way to organize and create reusable code. They allow you to encapsulate resources, variables, and other configurations in a unit that can be easily shared and referenced across multiple Terraform projects. It is basically dividing the solution into templates that can be reused and shared in IaC projects, in addition to easier maintenance.
 
-The objective is to have secondary templates (called Child Modules) that modularize the instances that will be created as well as their attributes, like variables. These templates can contain .tf files such as main.tf (resource) outputs.tf (output variables) and variables (input variables):
+The objective is to have secondary templates (called Child Modules) that will modularize the *declaration of instances and their attributes*, as variables. These templates can contain .tf files such as main.tf (resource) outputs.tf (output variables) and variables (input variables):
 
 ```terraform
 # main.tf (in a Child Module)
@@ -262,9 +262,9 @@ output "instance_ids" {
 
 ```
 
-Note that we only have a generalized template for creating EC2 instances on AWS (it isn't even necessary to define a provider), as well as its variable declaration. This is a module.
+Note that we only have a generalized template for creating EC2 instances on AWS (it isn't even necessary to define a provider), as well as its variable declaration. **We don't have initialization/assignment of values**. This is a module.
 
-And in the root folder, we define which module we want to call (through the *source* command), passing the necessary variables.
+And in the root folder, we define which module we want to call (through the *source* command), passing the necessary variables. **Here we have initialization/assignment of values**.
 
 ```terraform
 # main.tf (in a Root Module)
@@ -278,6 +278,8 @@ module "dsa_ec2_instances" {
   instance_type  = "t2.micro"
 }
 ```
+
+Basically, the Child Modules will specify the IaC's that can be used and their parameters (variables, outputs, etc.) while the Root Modules will create the Infrastructure described in these Child Modules, searching for the sources and passing the necessary values.
 
 *https://developer.hashicorp.com/terraform/language/modules*
 
