@@ -264,7 +264,7 @@ output "instance_ids" {
 
 Note that we only have a generalized template for creating EC2 instances on AWS (it isn't even necessary to define a provider), as well as its variable declaration. This is a module.
 
-And in the root folder, we define which module we want to call, passing the necessary variables.
+And in the root folder, we define which module we want to call (through the *source* command), passing the necessary variables.
 
 ```terraform
 # main.tf (in a Root Module)
@@ -277,6 +277,7 @@ module "dsa_ec2_instances" {
   ami_id         = "ami-0a0d9cf81c479446a"
   instance_type  = "t2.micro"
 }
+```
 
 *https://developer.hashicorp.com/terraform/language/modules*
 
