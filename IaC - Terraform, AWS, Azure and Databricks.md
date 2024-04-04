@@ -267,9 +267,9 @@ Note that we only have a generalized template for creating EC2 instances on AWS 
 And in the root folder, we define which module we want to call (through the *source* command), passing the necessary variables. **Here we have initialization/assignment of values**.
 
 ```terraform
-# main.tf (in a Root Module)
+# main.tf (in a Root Module) consumindo 2 módulos em uma só chamada
 
-module "dsa_ec2_instances" {
+module "example_ec2_instances" {
   
   source = "./modules/ec2-instances" # main.tf / output.tf / variables.tf 
 
@@ -277,13 +277,30 @@ module "dsa_ec2_instances" {
   ami_id         = "ami-0a0d9cf81c479446a"
   instance_type  = "t2.micro"
 }
+
+module "example_s3_bucket" {
+
+  source = "./modules/s3-bucket"
+
+  bucket_name = "nome exclusivo 3243446"
+}
 ```
 
 Basically, the Child Modules will specify the IaC's that can be used and their parameters (variables, outputs, etc.) while the Root Modules will create the Infrastructure described in these Child Modules, searching for the sources and passing the necessary values.
 
 *https://developer.hashicorp.com/terraform/language/modules*
 
+### terraform.tfstate
 
+This file, which follows a JSON representation, is crucial for the operation of Terraform and ***describes the current state of the infrastructure being managed***. The *terraform.tfstate* file contains information about resources that were created, modified, or removed using Terraform. It stores details such as resource IDs, the specific attributes of each resource, some metadata used and other information needed by Terraform to manage your infrastructure effectively.
+
+When commands such as *apply* or *destroy* are executed, Terraform consults the current *.tfstate* (the current settings) of the solution and from there, identifies which changes will need to be implemented to achieve the new desired state.
+
+The state can be used in 2 ways: **local**, which is Terraform storing the file locally in the solution's own working folder, or **remote**, storing it in some type of cloud provider (such as Amazon S3 or Terraform Cloud), which can be shared between people and systems and with blocks to avoid conflicts.
+
+It is worth noting that this file may contain sensitive application information, so it should not be used in any way.
+
+*https://developer.hashicorp.com/terraform/language/state*
 
 
 
