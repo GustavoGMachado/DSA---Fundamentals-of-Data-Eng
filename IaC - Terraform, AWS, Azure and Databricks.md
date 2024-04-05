@@ -355,6 +355,36 @@ resource "aws_instance" "web" {
 
 *https://developer.hashicorp.com/terraform/language/resources/provisioners/syntax*
 
+#### ***Remote Provisioner***:
+
+With the Remote Provisioner, we can run a command on a remote machine over SSH or WinRM. 
+
+The remote-exec provisioner invokes a script on a remote resource after it is created. But to do this, it is necessary to configure some parameters using the *connection* command. The connection can be made through both *ssh* and *winrm* methods.
+
+```terraform
+resource "aws_instance" "web" {
+  # ...
+
+  # Establishes connection to be used by all
+  # generic remote provisioners (i.e. file/remote-exec)
+  connection {
+    type     = "ssh"
+    user     = "root"
+    password = var.root_password
+    host     = self.public_ip
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "puppet apply",
+      "consul join ${aws_instance.web.private_ip}",
+    ]
+  }
+}
+```
+
+The need to configure a connection when using remote-exec is because Terraform needs information such as the IP address, username, SSH key, or password to establish a direct connection and send commands to the remote machine.
+
 
 
 
