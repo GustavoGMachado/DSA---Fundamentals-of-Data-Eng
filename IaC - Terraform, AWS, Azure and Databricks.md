@@ -385,6 +385,42 @@ resource "aws_instance" "web" {
 
 The need to configure a connection when using remote-exec is because Terraform needs information such as the IP address, username, SSH key, or password to establish a direct connection and send commands to the remote machine.
 
+### Creation-Time and Destroy-Time provisioners
+
+The moment in which provisioners are executed can be divided into two ways, they are:
+
+1) **Creation-Time**:
+As its name suggests, it refers to any script that must be executed immediately after creating a resource for the first time. For example, when it is necessary to start a service or configure a database as soon as an EC2 instance is created.
+
+```terraform
+resource "aws_instance" "web" {
+  # ...
+
+  provisioner "local-exec" {
+    when    = destroy
+    command = "echo 'Destroy-time provisioner'"
+  }
+}
+```
+
+*By default, provisioners run when the resource they are defined within is created. Creation-time provisioners are only run during creation, not during updating or any other lifecycle. They are meant as a means to perform bootstrapping of a system*.
+
+2) **Destroy-Time**:
+This concept refers to actions you want to take immediately before destroying a resource. For example, you may need to wipe data or disable services before removing an EC2 instance. To do this, we can use the *when* parameter inside the provisioner configuration.
+
+```terraform
+resource "aws_instance" "web" {
+  # ...
+
+  provisioner "local-exec" {
+    when    = destroy
+    command = "echo 'Destroy-time provisioner'"
+  }
+}
+```
+
+
+
 
 
 
