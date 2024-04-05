@@ -302,6 +302,16 @@ It is worth noting that this file may contain sensitive application information,
 
 *https://developer.hashicorp.com/terraform/language/state*
 
+### Terraform provisioner
+
+Not every type of structure can be allocated and/or manipulated directly through IaC, in a declarative way. But even so, with **terraform provisioner**, we can fix this problem and **configure resources externally**.
+
+The purpose of the tool is to allow the configuration of resources through **external** scripts, when it is not possible to configure resources with the default terraform settings. Provisioners can be used to model specific actions on the local machine or on a remote machine in order to prepare servers or other infrastructure objects for service.
+
+When we use provisioners, we are leaving the context of Terraform codes and adding complexity and uncertainty to the use of the tool. Therefore, Terraform discourages the excessive use of provisioners because they can harm the portability, scalability, reliability and state management of the platform, because they run in a different, external "world" without any control from Terraform.
+
+*https://developer.hashicorp.com/terraform/language/resources/provisioners/syntax*
+
 
 
 
