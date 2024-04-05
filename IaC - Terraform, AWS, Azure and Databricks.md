@@ -310,6 +310,49 @@ The purpose of the tool is to allow the configuration of resources through **ext
 
 When we use provisioners, we are leaving the context of Terraform codes and adding complexity and uncertainty to the use of the tool. Therefore, Terraform discourages the excessive use of provisioners because they can harm the portability, scalability, reliability and state management of the platform, because they run in a different, external "world" without any control from Terraform.
 
+#### There are 3 different types of provisioners in terraform:
+
+#### ***Local Provisioner***:
+
+*"The local-exec provisioner invokes a local executable after a resource is created. This invokes a process on the machine running Terraform, **not on the resource**"*.
+
+With this, we can run any scripts in the machine where Terraform is running (in the OS context), but in a way completely isolated from the scope of Terraform. In other words, terraform doesn't control or influence **anything** executed in this call.
+
+```terraform
+resource "aws_instance" "web" {
+  # ...
+
+  provisioner "local-exec" {
+    command = "echo ${self.private_ip} >> private_ips.txt"
+  }
+}
+```
+
+Because the provisioner is completely isolated, terraform cannot guarantee that it is in an operable state, even if the resource has already been fully provisioned.
+
+#### ***File Provisioner***:
+
+With the *file* provisioner, we can copies files or directories from the local machine to a remote machine.
+
+```terraform
+resource "aws_instance" "web" {
+  # ...
+
+  # Copies the myapp.conf file to /etc/myapp.conf
+  provisioner "file" {
+    source      = "conf/myapp.conf"
+    destination = "/etc/myapp.conf"
+  }
+
+  # Copies the configs.d folder to /etc/configs.d
+  provisioner "file" {
+    source      = "conf/configs.d"
+    destination = "/etc"
+  }
+
+}
+```
+
 *https://developer.hashicorp.com/terraform/language/resources/provisioners/syntax*
 
 
