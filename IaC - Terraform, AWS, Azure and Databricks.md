@@ -376,12 +376,14 @@ resource "aws_instance" "web" {
 
   provisioner "remote-exec" {
     inline = [
-      "puppet apply",
-      "consul join ${aws_instance.web.private_ip}",
+      "sudo yum update -y",
+      "sudo yum install httpd -y" 
     ]
   }
 }
 ```
+
+*Ps: To connect to a resource and execute commands remotely on the Instance, you must have some type of authentication with the Instance. For example, in AWS resources it is necessary to have a key pair, which can be general for an AWS account or specific to a certain Instance. Regardless of the type chosen, this authentication needs to be assigned when the resource is provisioned, as it cannot be defined later, after the resource already exists.*
 
 The need to configure a connection when using remote-exec is because Terraform needs information such as the IP address, username, SSH key, or password to establish a direct connection and send commands to the remote machine.
 
